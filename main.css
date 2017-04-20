@@ -1,0 +1,97 @@
+body,html,div,ul,li{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+ul,li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color: #000;
+}
+.taskInput{
+	width: 600px;
+	height: 30px;
+	line-height: 30px;
+}
+.pageTop{
+	background: #f00;
+	height: 45px;
+	line-height: 45px;
+}
+.pageContent{
+	width: 70%;
+	margin: 0 auto;
+}
+.pageContent h2{
+	color: #fff;
+	font-size: 18px;
+}
+.main{
+	width: 70%;
+	margin: 0 auto;
+}
+.clear{
+	clear: both;
+}
+.red{
+	color: red;
+}
+.taskCount{
+	margin-top: 15px;
+}
+.taskCount li{
+	float: left;
+	line-height: 30px;
+	height: 30px
+}
+.taskCount .action a{
+	width: 60px;
+	padding:5px;
+	margin-left: 10px;
+}
+.taskCount .action .active{
+	border: #ececec solid 1px;
+}
+.tasks .noTaskTip,.tasks .todoList li{
+	height: 35px;
+	line-height: 35px;
+	font-size: 14px;
+	background: #ececec;
+	border-bottom: 1px #dcdcdc solid;
+	display: block;
+	padding-left: 20px;
+}
+.completed .view label{
+	text-decoration:line-through;
+	color: #ccc;
+}
+.todo{
+	position: relative;
+	height: auto;
+}
+.destory{
+	position: absolute;
+	right: 10px;
+	top: 7px;
+	border: #ccc solid 1px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	width: 20px;
+}
+.tasks .todoList li.editing .view{
+	display: none;
+}
+.tasks .todoList li.editing .edit{
+	display: block;
+}
+.tasks .todoList li .edit{
+	width: 500px;
+	height: 35px;
+	line-height: 35px;
+	display: none;
+	padding-left: 10px;
+	text-decoration:none;
+}

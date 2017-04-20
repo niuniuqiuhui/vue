@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<title>vue练习之todolist</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="./main.css" />
+		<script type="text/javascript" src="./vue.js"></script>
+	</head>
+<body>
+	<div class="pageTop">
+		<div class="pageContent">
+			<h2>任务计划列表</h2>
+		</div>
+	</div>
+	<div class="main">
+		<h3 class="bigTitle">添加任务：</h3>
+		<input 
+			type="text" 
+			name="" 
+			class="taskInput" 
+			placeholder="例如：工作聊天改BUG   提示：+回车即可添加任务"
+			v-model="todo"
+			v-on:keyup.enter="addTodo"
+		/>
+		<ul class="taskCount" v-show="list.length">
+			<li class="red">
+			{{noCheckLength}}
+			个任务未完成</li>
+			<li class="action">
+				<a class="active" href="#all">所有任务</a>
+				<a href="#unfinished">未完成的任务</a>
+				<a href="#finished">完成的任务</a>
+			</li>
+			<div class="clear"></div>
+		</ul>
+		<h3 class="bigTitle">任务列表：</h3>
+		<div class="tasks">
+			<span class="noTaskTip" v-show="!list.length">还没有添加任何任务</span>
+			<ul class="todoList">
+				<li class="todo" :class="{completed: item.isChecked,editing: item === editorTodos}" v-for="item in filteredList">
+					<div class="view">
+						<input type="checkbox" class="toggle" v-model="item.isChecked" />
+						<label @dblclick="editorTodo(item)">{{item.title}}</label>
+						<div class="destory" @click="deleteTodo(item)">X</div>
+					</div>
+					<input 
+						type="text" 
+						class="edit" 
+						v-model="item.title"
+						v-focus="editorTodos === item"
+						@blur="editorTodoend(item)"
+						@keyup.13="editorTodoend(item)"
+						@keyup.esc="cacelTodo(item)"
+					/>
+				</li>
+				
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" src="./app.js"></script>
+</body>
+</html>
