@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<title>vue练习之select</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="./select.css" />
+		<script type="text/javascript" src="../vue.js"></script>
+	</head>
+<body>
+	<div id="app">
+		<div class="left">
+			<h2>自定义下拉框</h2>
+			<custom-select btn-value="查询" v-bind:list="list1"></custom-select>
+		</div>
+		<div class="left">
+			<h2>自定义下拉框2</h2>
+			<custom-select btn-value="搜索" v-bind:list="list2"></custom-select>
+		</div>
+	</div>
+	<script type="text/javascript">
+		//注册组件 全局
+		Vue.component("custom-select",{
+			data:function(){
+				return {
+							selectShow:false,
+							val:"",
+						}
+			},
+			props:["btnValue","list"],
+			template:`<section class="warp">
+						<div class="searchIpt clearFix">
+							<div class="clearFix">
+								<input type="text" class="keyWord" @click="selectShow=!selectShow" :value="val" />
+								<input type="button" class="search" :value="btnValue" />
+								<span></span>
+							</div>
+							<custom-list 
+								v-show="selectShow" 
+								:list="list"
+								@receive="changeValueHandle"
+							></custom-list>
+						</div>
+					</section>`,
+			methods:{
+				changeValueHandle(value){
+					this.val = value;
+				}
+			}
+		})
+		Vue.component("custom-list",{
+			props:["list"],
+			template:`<ul class="list">
+							<li v-for="item of list" @click="selectVuleHandle(item)">{{item}}</li>
+						</ul>`,
+			methods:{
+				selectVuleHandle:function(item){
+					//告知父级，改变val的值，需要触发自定义事件
+					this.$emit("receive",item);
+				},
+			}
+		})
+		var data = {
+			list1:["北京","天津","河北"],
+			list2:["11","22","33","44"]
+		}
+		new Vue({
+			el:"#app",
+			data:data,
+			// components:{//局部注册
+			// 	'custom-select':{
+			// 		template:`<section class="warp">
+			// 					<div class="searchIpt clearFix">
+			// 						<div class="clearFix">
+			// 							<input type="text" class="keyWord" name="" />
+			// 							<input type="button" value="GO" name="">
+			// 							<span></span>
+			// 						</div>
+			// 						<ul class="list">
+			// 							<li>html+css</li>
+			// 							<li>html5+css3</li>
+			// 							<li>angularjs</li>
+			// 							<li>react</li>
+			// 							<li>vue</li>
+			// 						</ul>
+			// 					</div>
+			// 				</section>`
+			// 	}
+			// }
+		})
+	</script>
+</body>
+</html>
